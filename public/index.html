@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>المنيو</title>
+    <style>
+      :root{
+        --bg:#0f1226;--surface:#141935;--muted:#9aa3c7;--text:#e6e9ff;--accent:#5b8cff;--chip:#101534;--border:#23284f;
+        --ok:#22c55e;--warn:#ef4444
+      }
+      *{box-sizing:border-box}
+      body{margin:0;background:linear-gradient(135deg,#0f1226,#0b0e1d);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;color:var(--text);min-height:100vh}
+      header{position:sticky;top:0;z-index:10;background:rgba(15,18,38,.8);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+      .container{width:min(1100px,94vw);margin-inline:auto;padding:16px}
+      .title{display:flex;align-items:center;justify-content:space-between;gap:12px}
+      .title h1{margin:0;font-size:22px;letter-spacing:.3px}
+      .search{display:flex;gap:10px;margin-top:12px}
+      .search input{flex:1;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:#0e1430;color:var(--text)}
+      .chips{display:flex;gap:8px;overflow:auto;padding:10px 2px}
+      .chip{padding:8px 12px;border-radius:999px;background:var(--chip);border:1px solid var(--border);color:var(--text);cursor:pointer;white-space:nowrap;font-size:14px}
+      .chip.active{background:var(--accent);border-color:transparent}
+      main{padding:18px 0}
+      .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}
+      .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+      .thumb{aspect-ratio:4/3;background:#0e1430;position:relative}
+      .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+      .badge{position:absolute;top:8px;left:8px;background:#1f243f;color:#fff;padding:6px 10px;border-radius:10px;border:1px solid var(--border);font-size:12px}
+      .badge.unavailable{background:#3a1f2a;border-color:#60263b}
+      .content{padding:12px 12px 14px}
+      .name{margin:0 0 6px;font-size:16px}
+      .meta{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px}
+      footer{padding:26px 0;color:var(--muted);text-align:center;font-size:13px}
+      .empty{color:var(--muted);text-align:center;padding:40px 0}
+      
+      /* Hero section */
+      .hero{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--border);background:#0e1430;margin-bottom:16px;min-height:180px}
+      .hero .slide{width:100%;height:100%;min-height:180px;background-size:cover;background-position:center}
+      .hero .overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(0,0,0,.15));display:flex;align-items:center;justify-content:flex-start}
+      .hero .text{padding:18px 20px;max-width:70%;color:#fff;font-size:18px;line-height:1.6}
+      .hero .title{margin:0 0 6px;font-size:22px;font-weight:700}
+      .hero .subtitle{margin:0 0 12px;color:#e6e9ffcc;font-size:14px}
+      .hero .actions{display:flex;gap:10px}
+      .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:1px solid var(--border);background:#1f243f;color:#fff;text-decoration:none;font-size:14px;cursor:pointer}
+      .btn.primary{background:var(--accent)}
+      .btn.success{background:var(--ok)}
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="title">
+          <h1></h1>
+          <a href="/admin/" style="color:var(--accent);text-decoration:none">لوحة الإدارة ↗</a>
+        </div>
+        <div class="search">
+          <input id="q" type="search" placeholder="ابحث عن طبق..." />
+        </div>
+        <div id="cats" class="chips" aria-label="التصنيفات"></div>
+      </div>
+    </header>
+
+    <main>
+      <div class="container">
+        <!-- Hero injected by settings/hero_images -->
+        <section id="hero" class="hero" style="display:none"></section>
+        <div id="grid" class="grid"></div>
+        <div id="empty" class="empty" style="display:none">لا توجد أطباق مطابقة.</div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">يعرض هذه الصفحة البيانات مباشرة من واجهة API الداخلية (/categories و /menu_items).</div>
+    </footer>
+
+    <script>
+      const state={categories:[],items:[],heroes:[],settings:{},selected:null,query:""};
+      const elCats=document.getElementById('cats');
+      const elGrid=document.getElementById('grid');
+      const elEmpty=document.getElementById('empty');
+      const elQ=document.getElementById('q');
+      const elHero=document.getElementById('hero');
+      const elTitle=document.querySelector('.title h1');
+
+      elQ.addEventListener('input',()=>{state.query=elQ.value.trim(); renderItems();});
+
+      async function load(){
+        try{
+          const [catsRes,itemsRes,settingsRes,heroesRes]=await Promise.all([
+            fetch('/categories'),
+            fetch('/menu_items'),
+            fetch('/settings'),
+            fetch('/hero_images')
+          ]);
+          state.categories = await safeArray(catsRes);
+          state.items      = await safeArray(itemsRes);
+          state.settings   = await safeObject(settingsRes);
+          state.heroes     = await safeArray(heroesRes);
+          applySettings();
+          renderHero();
+          renderCategories();
+          renderItems();
+        }catch(e){
+          console.error(e);
+        }
+      }
+
+      async function safeArray(res){
+        try{ const d = await res.json(); return Array.isArray(d)? d : []; }catch{ return []; }
+      }
+      async function safeObject(res){
+        try{ const d = await res.json(); return (d && typeof d==='object' && !Array.isArray(d))? d : {}; }catch{ return {}; }
+      }
+
+      function applySettings(){
+        const appTitle = state.settings?.app_title_ar || state.settings?.menu_title_ar || 'المنيو';
+        if(elTitle) elTitle.textContent = appTitle;
+        try{ document.title = appTitle; }catch{}
+      }
+
+      function renderCategories(){
+        elCats.innerHTML='';
+        const allBtn = chip('الكل', null, state.selected===null);
+        elCats.appendChild(allBtn);
+        const cats=[...state.categories].sort((a,b)=> (a.sort_order??0)-(b.sort_order??0) || a.name_ar.localeCompare(b.name_ar,'ar'));
+        for(const c of cats){
+          elCats.appendChild(chip(c.name_ar, c.id, state.selected===c.id));
+        }
+      }
+
+      function chip(label, id, active){
+        const b=document.createElement('button');
+        b.className='chip'+(active?' active':'');
+        b.textContent=label;
+        b.onclick=()=>{state.selected=id; renderCategories(); renderItems();};
+        return b;
+      }
+
+      function renderHero(){
+        if(!elHero) return;
+        const actives = (state.heroes||[]).filter(h=>h.is_active).sort((a,b)=> (a.sort_order??0)-(b.sort_order??0) || a.id-b.id);
+        if(!actives.length){ elHero.style.display='none'; elHero.innerHTML=''; return; }
+        const first = actives[0];
+        const heroTitle = state.settings?.hero_text_ar || '';
+        const subTitle = state.settings?.subtitle_ar || '';
+        const viewMenuLbl = state.settings?.view_menu_label_ar || 'تصفّح المنيو';
+        const orderNowLbl = state.settings?.order_now_label_ar || 'اطلب الآن';
+        const bg = first?.url || '';
+        elHero.innerHTML = `
+          <div class="slide" style="background-image:url('${bg.replace(/'/g,"\\'")}')"></div>
+          <div class="overlay"><div class="text">
+            ${heroTitle?`<h2 class="title">${escapeHtml(heroTitle)}</h2>`:''}
+            ${subTitle?`<p class="subtitle">${escapeHtml(subTitle)}</p>`:''}
+            <div class="actions">
+              <a href="#grid" class="btn primary" id="btnViewMenu">${escapeHtml(viewMenuLbl)}</a>
+              <a href="#order" class="btn success" id="btnOrderNow">${escapeHtml(orderNowLbl)}</a>
+            </div>
+          </div></div>
+        `;
+        elHero.style.display='block';
+        const btnView=document.getElementById('btnViewMenu');
+        if(btnView){ btnView.addEventListener('click', (e)=>{ e.preventDefault(); document.getElementById('grid')?.scrollIntoView({behavior:'smooth'}); }); }
+      }
+
+      function renderItems(){
+        const q=state.query.toLowerCase();
+        const items=state.items.filter(it=>{
+          const byCat = state.selected===null || it.category_id===state.selected;
+          const byQ = !q || [it.name_ar,it.name_en,it.name_tr].some(x=> (x||'').toLowerCase().includes(q));
+          return byCat && byQ;
+        });
+        elGrid.innerHTML='';
+        if(items.length===0){ elEmpty.style.display='block'; return; }
+        elEmpty.style.display='none';
+        for(const it of items){
+          elGrid.appendChild(card(it));
+        }
+      }
+
+      function card(it){
+        const c=document.createElement('div'); c.className='card';
+        const imgUrl = it.image_url || '';
+        c.innerHTML=`
+          <div class="thumb">
+            ${imgUrl?`<img src="${imgUrl}" alt="${escapeHtml(it.name_ar)}" loading="lazy">`:''}
+            ${it.is_available?'' : '<span class="badge unavailable">غير متاح حالياً</span>'}
+          </div>
+          <div class="content">
+            <h3 class="name">${escapeHtml(it.name_ar)}</h3>
+            <div class="meta">
+              <span>${formatPrice(it.price)}</span>
+              <span>${catName(it.category_id)}</span>
+            </div>
+          </div>`;
+        return c;
+      }
+
+      function catName(id){
+        const c=state.categories.find(x=>x.id===id);return c?c.name_ar:'';
+      }
+      function formatPrice(v){
+        const n=Number(v||0);
+        return n.toLocaleString('ar', {minimumFractionDigits:2, maximumFractionDigits:2})+ '';
+      }
+      function escapeHtml(s){
+        return String(s||'').replace(/[&<>"']/g, m=> ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[m]));
+      }
+
+      load();
+    </script>
+  </body>
+</html>

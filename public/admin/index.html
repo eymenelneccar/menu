@@ -1,0 +1,481 @@
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>لوحة الإدارة – إدارة الأصناف والأكلات</title>
+  <style>
+    :root{--bg:#0b0f14;--car:#131a22;--muted:#8aa0b3;--fg:#eaf2f9;--accent:#2dd4bf;--danger:#ef4444}
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,Segoe UI,Roboto,"Noto Kufi Arabic",sans-serif}
+    header{padding:16px 20px;border-bottom:1px solid #1f2937;background:rgba(0,0,0,.2);position:sticky;top:0}
+    .container{max-width:1100px;margin:20px auto;padding:0 16px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .card{background:var(--car);border:1px solid #1f2937;border-radius:14px;padding:16px}
+    h1{font-size:20px;margin:0 0 6px}
+    h2{font-size:18px;margin:0 0 10px}
+    label{display:block;margin:8px 0 6px;color:var(--muted)}
+    input,select,textarea{width:100%;padding:10px 12px;border-radius:10px;border:1px solid #334155;background:#0f172a;color:var(--fg)}
+    textarea{min-height:70px}
+    table{width:100%;border-collapse:collapse;border:1px solid #1f2937}
+    th,td{padding:10px;border-bottom:1px solid #1f2937;text-align:right}
+    th{color:#a3b2c2;background:#0f1620;position:sticky;top:62px}
+    .row-actions{display:flex;gap:8px}
+    .btn{padding:10px 14px;border-radius:10px;border:1px solid #1f2937;background:#0e1b18;color:var(--accent);cursor:pointer}
+    .btn.secondary{background:#111827;color:#cbd5e1}
+    .btn.danger{background:#210f12;color:#fecaca;border-color:#b91c1c}
+    .status{font-size:12px;color:var(--muted)}
+    .status.ok{color:var(--accent)}
+    .status.bad{color:var(--danger)}
+    .toolbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .pill{display:inline-block;padding:4px 10px;border-radius:999px;background:#0d1b2a;color:#9fbad1;border:1px solid #1f2a3a}
+    .flex{display:flex;gap:10px;align-items:center}
+  </style>
+  <script src="./config.js"></script>
+  <script>
+-    const API_BASE = window.API_BASE || "https://your-backend-domain.com";
++    const API_BASE = window.API_BASE || "/.netlify/functions";
+     const API = (path) => `${API_BASE}${path.startsWith('/') ? path : '/'+path}`;
+     const normalizeUrl = (u) => {
+       if (!u) return u;
+       if (/^https?:\/\//i.test(u)) return u;
+       return API(u);
+     };
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container flex" style="justify-content:space-between">
+      <div class="flex" style="gap:12px">
+        <span class="pill">لوحة الإدارة</span>
+        <a href="/" class="btn secondary" style="text-decoration:none">الصفحة الرئيسية</a>
+      </div>
+      <div class="status" id="health">التحقق من الاتصال...</div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="grid">
+      <!-- نموذج الصنف -->
+      <div class="card">
+        <h2>إضافة/تعديل صنف</h2>
+        <form id="itemForm">
+          <input type="hidden" id="itemId">
+          <div class="grid">
+            <div>
+              <label>الاسم (عربي)</label>
+              <input id="name_ar" required>
+            </div>
+            <div>
+              <label>الاسم (إنجليزي)</label>
+              <input id="name_en" required>
+            </div>
+            <div>
+              <label>الاسم (تركي)</label>
+              <input id="name_tr" required>
+            </div>
+            <div>
+              <label>السعر</label>
+              <input id="price" type="number" step="0.01" required>
+            </div>
+            <div>
+              <label>رابط الصورة</label>
+              <input id="image_url" placeholder="https://..." required>
+            </div>
+            <div>
+              <label>التصنيف</label>
+              <div class="flex" style="gap:8px">
+                <select id="category_id" style="flex:1"></select>
+                <button type="button" id="addCatBtn" class="btn">+ تصنيف</button>
+              </div>
+            </div>
+            <div>
+              <label>متاح؟</label>
+              <select id="is_available">
+                <option value="true">نعم</option>
+                <option value="false">لا</option>
+              </select>
+            </div>
+          </div>
+          <div class="toolbar" style="margin-top:12px">
+            <div class="status" id="formStatus"></div>
+            <div class="flex">
+              <button class="btn" type="submit">حفظ</button>
+              <button class="btn secondary" type="reset" id="resetBtn">تفريغ</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- إدارة التصنيفات -->
+      <div class="card">
+        <h2>التصنيفات</h2>
+        <div class="toolbar">
+          <input id="newCatNameAr" placeholder="اسم عربي">
+          <input id="newCatNameEn" placeholder="اسم إنجليزي">
+          <input id="newCatNameTr" placeholder="اسم تركي">
+          <input id="newCatImage" placeholder="رابط صورة">
+          <button id="createCategory" class="btn">إضافة</button>
+        </div>
+        <ul id="cats" class="status" style="list-style:none;padding:0;margin:0"></ul>
+      </div>
+
+      <!-- إدارة الإعدادات العامة -->
+      <div class="card">
+        <h2>إعدادات الموقع</h2>
+        <div class="grid">
+          <div>
+            <label>عنوان التطبيق (عربي)</label>
+            <input id="app_title_ar" placeholder="اسم التطبيق">
+          </div>
+          <div>
+            <label>عنوان التطبيق (إنجليزي)</label>
+            <input id="app_title_en" placeholder="App Title">
+          </div>
+          <div>
+            <label>عنوان التطبيق (تركي)</label>
+            <input id="app_title_tr" placeholder="Uygulama Başlığı">
+          </div>
+          <div>
+            <label>العنوان الفرعي أعلى الشريط (عربي)</label>
+            <input id="subtitle_ar" placeholder="مثال: مطاعم لندن">
+          </div>
+          <div>
+            <label>العنوان الفرعي أعلى الشريط (إنجليزي)</label>
+            <input id="subtitle_en" placeholder="e.g. Restaurants in London">
+          </div>
+          <div>
+            <label>العنوان الفرعي أعلى الشريط (تركي)</label>
+            <input id="subtitle_tr" placeholder="ör. Londra Restoranları">
+          </div>
+          <div>
+            <label>عنوان المنيو (عربي)</label>
+            <input id="menu_title_ar" placeholder="المنيو">
+          </div>
+          <div>
+            <label>عنوان المنيو (إنجليزي)</label>
+            <input id="menu_title_en" placeholder="Menu">
+          </div>
+          <div>
+            <label>عنوان المنيو (تركي)</label>
+            <input id="menu_title_tr" placeholder="Menü">
+          </div>
+          <div>
+            <label>نص الهيرو (عربي)</label>
+            <textarea id="hero_text_ar" placeholder="نص تشويقي في الأعلى"></textarea>
+          </div>
+          <div>
+            <label>نص الهيرو (إنجليزي)</label>
+            <textarea id="hero_text_en" placeholder="Hero text"></textarea>
+          </div>
+          <div>
+            <label>نص الهيرو (تركي)</label>
+            <textarea id="hero_text_tr" placeholder="Hero text"></textarea>
+          </div>
+          <div>
+            <label>نص زر عرض المنيو (عربي)</label>
+            <input id="view_menu_label_ar" placeholder="عرض المنيو">
+          </div>
+          <div>
+            <label>نص زر عرض المنيو (إنجليزي)</label>
+            <input id="view_menu_label_en" placeholder="View Menu">
+          </div>
+          <div>
+            <label>نص زر عرض المنيو (تركي)</label>
+            <input id="view_menu_label_tr" placeholder="Menüyü Gör">
+          </div>
+          <div>
+            <label>نص زر اطلب الآن (عربي)</label>
+            <input id="order_now_label_ar" placeholder="اطلب الآن">
+          </div>
+          <div>
+            <label>نص زر اطلب الآن (إنجليزي)</label>
+            <input id="order_now_label_en" placeholder="Order Now">
+          </div>
+          <div>
+            <label>نص زر اطلب الآن (تركي)</label>
+            <input id="order_now_label_tr" placeholder="Şimdi Sipariş Ver">
+          </div>
+        </div>
+        <div class="toolbar" style="margin-top:8px">
+          <div class="status" id="settingsStatus"></div>
+          <button id="saveSettings" class="btn">حفظ الإعدادات</button>
+        </div>
+      </div>
+
+      <!-- إدارة صور الهيرو -->
+      <div class="card">
+        <h2>صور الهيرو</h2>
+        <div class="toolbar" style="gap:8px;flex-wrap:wrap;align-items:stretch">
+          <input id="heroUrl" placeholder="https://example.com/slide.jpg" style="flex:1;min-width:220px">
+          <input id="heroOrder" type="number" placeholder="الترتيب (0..)" style="width:140px">
+          <select id="heroActive" style="width:120px">
+            <option value="true">مفعّل</option>
+            <option value="false">معطّل</option>
+          </select>
+          <input id="heroFile" type="file" accept="image/*" style="width:220px">
+          <button id="addHero" class="btn">إضافة صورة (رابط)</button>
+          <button id="uploadHero" class="btn">رفع من الجهاز</button>
+        </div>
+        <div id="heroList" class="status" style="overflow:auto"></div>
+      </div>
+      <script>
+        const $ = (s)=>document.querySelector(s);
+        const api = {
+          health: ()=>fetch(API('/health')).then(r=>r.json()),
+          categories: ()=>fetch(API('/categories')).then(r=>r.json()),
+          createCategory: (c)=>fetch(API('/categories'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(c)}).then(r=>r.json()),
+          items: ()=>fetch(API('/menu_items')).then(r=>r.json()),
+          createItem: (i)=>fetch(API('/menu_items'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(i)}).then(r=>r.json()),
+          updateItem: (id,i)=>fetch(API(`/menu_items/${id}`),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(i)}).then(r=>r.json()),
+          deleteItem: (id)=>fetch(API(`/menu_items/${id}`),{method:'DELETE'}).then(r=>r.json()),
+          // جديد: الإعدادات وصور الهيرو
+          getSettings: ()=>fetch(API('/settings')).then(r=>r.json()),
+          saveSettings: (s)=>fetch(API('/settings'),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(s)}).then(r=>r.json()),
+          getHeros: ()=>fetch(API('/hero_images')).then(r=>r.json()),
+          addHero: (h)=>fetch(API('/hero_images'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(h)}).then(r=>r.json()),
+          uploadHero: (form)=>fetch(API('/hero_images/upload'),{method:'POST',body:form}).then(r=>r.json()),
+          updateHero: (id,h)=>fetch(API(`/hero_images/${id}`),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(h)}).then(r=>r.json()),
+          deleteHero: (id)=>fetch(API(`/hero_images/${id}`),{method:'DELETE'}).then(r=>r.json()),
+          // تحديث/حذف التصنيفات
+          updateCategory: (id,c)=>fetch(API(`/categories/${id}`),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(c)}).then(r=>r.json()),
+          deleteCategory: (id)=>fetch(API(`/categories/${id}`),{method:'DELETE'}).then(r=>r.json()),
+        }
+      
+        // hook upload button
+        document.addEventListener('DOMContentLoaded', ()=>{
+          const statusEl = document.getElementById('settingsStatus');
+          const heroFile = document.getElementById('heroFile');
+          const heroOrder = document.getElementById('heroOrder');
+          const heroActive = document.getElementById('heroActive');
+          const uploadBtn = document.getElementById('uploadHero');
+          if(uploadBtn){
+            uploadBtn.addEventListener('click', async ()=>{
+              if(!heroFile.files || !heroFile.files[0]){ statusEl.textContent='يرجى اختيار صورة'; return; }
+              const fd = new FormData();
+              fd.append('file', heroFile.files[0]);
+              if(heroOrder && heroOrder.value) fd.append('sort_order', heroOrder.value);
+              if(heroActive) fd.append('is_active', heroActive.value);
+              statusEl.textContent='جاري الرفع...';
+              try{
+                const out = await api.uploadHero(fd);
+                if(out && !out.error){
+                  statusEl.textContent='تم الرفع ✅';
+                  heroFile.value = '';
+                  await renderHeroes();
+                }else{
+                  statusEl.textContent='خطأ: ' + (out?.error||'تعذر الرفع');
+                }
+              }catch(e){ statusEl.textContent='خطأ في الاتصال'; }
+            });
+          }
+
+          // حفظ الإعدادات
+          const saveBtn = document.getElementById('saveSettings');
+          if (saveBtn){
+            saveBtn.addEventListener('click', async ()=>{
+              const payload = {
+                app_title_ar: document.getElementById('app_title_ar')?.value || null,
+                app_title_en: document.getElementById('app_title_en')?.value || null,
+                app_title_tr: document.getElementById('app_title_tr')?.value || null,
+                subtitle_ar: document.getElementById('subtitle_ar')?.value || null,
+                subtitle_en: document.getElementById('subtitle_en')?.value || null,
+                subtitle_tr: document.getElementById('subtitle_tr')?.value || null,
+                menu_title_ar: document.getElementById('menu_title_ar')?.value || null,
+                menu_title_en: document.getElementById('menu_title_en')?.value || null,
+                menu_title_tr: document.getElementById('menu_title_tr')?.value || null,
+                hero_text_ar: document.getElementById('hero_text_ar')?.value || null,
+                hero_text_en: document.getElementById('hero_text_en')?.value || null,
+                hero_text_tr: document.getElementById('hero_text_tr')?.value || null,
+                view_menu_label_ar: document.getElementById('view_menu_label_ar')?.value || null,
+                view_menu_label_en: document.getElementById('view_menu_label_en')?.value || null,
+                view_menu_label_tr: document.getElementById('view_menu_label_tr')?.value || null,
+                order_now_label_ar: document.getElementById('order_now_label_ar')?.value || null,
+                order_now_label_en: document.getElementById('order_now_label_en')?.value || null,
+                order_now_label_tr: document.getElementById('order_now_label_tr')?.value || null,
+              };
+              statusEl.textContent = 'جارٍ الحفظ...';
+              try{
+                await api.saveSettings(payload);
+                statusEl.textContent = 'تم حفظ الإعدادات ✅';
+              }catch(e){ statusEl.textContent = 'تعذر حفظ الإعدادات'; }
+            });
+          }
+
+          // إضافة صورة هيرو من رابط
+          const addHeroBtn = document.getElementById('addHero');
+          if(addHeroBtn){
+            addHeroBtn.addEventListener('click', async ()=>{
+              const url = document.getElementById('heroUrl')?.value?.trim();
+              const sort_order = document.getElementById('heroOrder')?.value || 0;
+              const is_active = document.getElementById('heroActive')?.value || 'true';
+              if(!url){ statusEl.textContent='يرجى إدخال رابط الصورة'; return; }
+              try{
+                const res = await api.addHero({ url, sort_order: Number(sort_order)||0, is_active: is_active === 'true' });
+                if(res && !res.error){
+                  statusEl.textContent='تمت الإضافة ✅';
+                  document.getElementById('heroUrl').value='';
+                  await renderHeroes();
+                } else {
+                  statusEl.textContent='خطأ: '+(res?.error||'تعذر الإضافة');
+                }
+              }catch(e){ statusEl.textContent='خطأ في الاتصال'; }
+            });
+          }
+
+          // إنشاء تصنيف جديد
+          const createCategoryBtn = document.getElementById('createCategory');
+          if (createCategoryBtn){
+            createCategoryBtn.addEventListener('click', async ()=>{
+              const name_ar = document.getElementById('newCatNameAr')?.value?.trim();
+              const name_en = document.getElementById('newCatNameEn')?.value?.trim();
+              const name_tr = document.getElementById('newCatNameTr')?.value?.trim();
+              const image_url = document.getElementById('newCatImage')?.value?.trim();
+              if(!name_ar || !name_en || !name_tr || !image_url){ return; }
+              try{
+                await api.createCategory({ name_ar, name_en, name_tr, image_url });
+                await renderCategories();
+                // تفريغ الحقول
+                document.getElementById('newCatNameAr').value='';
+                document.getElementById('newCatNameEn').value='';
+                document.getElementById('newCatNameTr').value='';
+                document.getElementById('newCatImage').value='';
+              }catch(e){ /* ignore */ }
+            });
+           }
+
+          // إرسال نموذج الصنف (عنصر منيو)
+          const form = document.getElementById('itemForm');
+          if (form){
+            form.addEventListener('submit', async (ev)=>{
+              ev.preventDefault();
+              const payload = {
+                name_ar: document.getElementById('name_ar')?.value?.trim(),
+                name_en: document.getElementById('name_en')?.value?.trim(),
+                name_tr: document.getElementById('name_tr')?.value?.trim(),
+                price: parseFloat(document.getElementById('price')?.value||'0')||0,
+                image_url: document.getElementById('image_url')?.value?.trim()||null,
+                category_id: Number(document.getElementById('category_id')?.value)||null,
+                is_available: (document.getElementById('is_available')?.value||'true') === 'true',
+              };
+              const fs = document.getElementById('formStatus');
+              fs.textContent = 'جارٍ الحفظ...';
+              try{
+                const idVal = document.getElementById('itemId')?.value;
+                if (idVal){
+                  await api.updateItem(idVal, payload);
+                } else {
+                  await api.createItem(payload);
+                }
+                fs.textContent = 'تم الحفظ ✅';
+                form.reset();
+              }catch(e){ fs.textContent = 'حدث خطأ في الحفظ'; }
+            });
+          }
+
+          // زر تفريغ النموذج
+          const resetBtn = document.getElementById('resetBtn');
+          if (resetBtn){ resetBtn.addEventListener('click', ()=>{ document.getElementById('formStatus').textContent=''; }); }
+
+          // تهيئة الصفحة
+          initPage();
+        });
+
+        async function initPage(){
+          try{ await checkHealth(); }catch(e){/* ignore */}
+          await Promise.all([
+            loadSettings(),
+            renderCategories(),
+            renderHeroes(),
+          ]);
+        }
+
+        async function checkHealth(){
+          try{
+            const h = await api.health();
+            const el = document.getElementById('health');
+            if (h?.ok){ el.textContent = 'متصل ✅'; el.classList.add('ok'); el.classList.remove('bad'); }
+            else { el.textContent = 'غير متصل ❌'; el.classList.add('bad'); el.classList.remove('ok'); }
+          }catch(e){ const el = document.getElementById('health'); el.textContent='غير متصل ❌'; el.classList.add('bad'); el.classList.remove('ok'); }
+        }
+
+        async function loadSettings(){
+          try{
+            const s = await api.getSettings();
+            const map = {
+              app_title_ar:'app_title_ar', app_title_en:'app_title_en', app_title_tr:'app_title_tr',
+              subtitle_ar:'subtitle_ar', subtitle_en:'subtitle_en', subtitle_tr:'subtitle_tr',
+              menu_title_ar:'menu_title_ar', menu_title_en:'menu_title_en', menu_title_tr:'menu_title_tr',
+              hero_text_ar:'hero_text_ar', hero_text_en:'hero_text_en', hero_text_tr:'hero_text_tr',
+              view_menu_label_ar:'view_menu_label_ar', view_menu_label_en:'view_menu_label_en', view_menu_label_tr:'view_menu_label_tr',
+              order_now_label_ar:'order_now_label_ar', order_now_label_en:'order_now_label_en', order_now_label_tr:'order_now_label_tr',
+            };
+            Object.keys(map).forEach(k=>{ const el = document.getElementById(map[k]); if (el) el.value = s?.[k]??''; });
+          }catch(e){ /* ignore */ }
+        }
+
+        async function renderCategories(){
+          try{
+            const cats = await api.categories();
+            // تعبئة القائمة المنسدلة
+            const sel = document.getElementById('category_id');
+            if (sel){ sel.innerHTML = cats.map(c=>`<option value="${c.id}">${c.name_ar||c.name_en||('قسم #' + c.id)}</option>`).join(''); }
+            // قائمة التصنيفات
+            const list = document.getElementById('cats');
+            if (list){
+              list.innerHTML = cats.map(c=>{
+                return `<li style="margin:6px 0;display:flex;align-items:center;gap:8px">\n                <span class="pill">#${c.id}</span>\n                <input data-id="${c.id}" data-field="name_ar" value="${c.name_ar||''}" style="flex:1"/>\n                <input data-id="${c.id}" data-field="name_en" value="${c.name_en||''}" style="flex:1"/>\n                <input data-id="${c.id}" data-field="name_tr" value="${c.name_tr||''}" style="flex:1"/>\n                <input data-id="${c.id}" data-field="image_url" value="${c.image_url||''}" style="flex:1"/>\n                <button class="btn secondary" data-action="save-cat" data-id="${c.id}">حفظ</button>\n                <button class="btn danger" data-action="del-cat" data-id="${c.id}">حذف</button>\n              </li>`;
+              }).join('');
+              list.onclick = async (e)=>{
+                const t = e.target;
+                if (!(t instanceof HTMLElement)) return;
+                const id = t.getAttribute('data-id');
+                if (t.getAttribute('data-action') === 'save-cat'){
+                  const row = t.parentElement;
+                  const _get = (f)=>row.querySelector(`input[data-field="${f}"]`)?.value?.trim()||null;
+                  const payload = { name_ar:_get('name_ar'), name_en:_get('name_en'), name_tr:_get('name_tr'), image_url:_get('image_url') };
+                  await api.updateCategory(id, payload);
+                  await renderCategories();
+                }
+                if (t.getAttribute('data-action') === 'del-cat'){
+                  await api.deleteCategory(id);
+                  await renderCategories();
+                }
+              };
+            }
+          }catch(e){ /* ignore */ }
+        }
+
+        async function renderHeroes(){
+          try{
+            const heros = await api.getHeros();
+            const box = document.getElementById('heroList');
+            if (!box) return;
+            if (!heros || !heros.length){ box.textContent = 'لا توجد صور بعد'; return; }
+            box.innerHTML = heros.sort((a,b)=> (a.sort_order||0) - (b.sort_order||0)).map(h=>{
+              return `<div style=\"display:flex;gap:10px;align-items:center;margin:6px 0;border:1px solid #1f2937;border-radius:10px;padding:8px\">\n              <img src=\"${normalizeUrl(h.url)}\" alt=\"hero\" style=\"width:120px;height:70px;object-fit:cover;border-radius:8px;border:1px solid #334155\"/>\n              <span class=\"pill\">#${h.id}</span>\n              <label>ترتيب:</label>\n              <input data-id=\"${h.id}\" data-field=\"sort_order\" type=\"number\" value=\"${h.sort_order||0}\" style=\"width:90px\"/>\n              <label>مفعل:</label>\n              <select data-id=\"${h.id}\" data-field=\"is_active\" style=\"width:90px\">\n                <option value=\"true\" ${h.is_active? 'selected':''}>نعم</option>\n                <option value=\"false\" ${!h.is_active? 'selected':''}>لا</option>\n              </select>\n              <button class=\"btn secondary\" data-action=\"save-hero\" data-id=\"${h.id}\">حفظ</button>\n              <button class=\"btn danger\" data-action=\"del-hero\" data-id=\"${h.id}\">حذف</button>\n            </div>`;
+            }).join('');
+            box.onclick = async (e)=>{
+              const t = e.target;
+              if (!(t instanceof HTMLElement)) return;
+              const id = t.getAttribute('data-id');
+              if (t.getAttribute('data-action') === 'save-hero'){
+                const row = t.parentElement;
+                const _get = (f)=>row.querySelector(`[data-field=\"${f}\"]`)?.value;
+                const payload = { sort_order: Number(_get('sort_order'))||0, is_active: _get('is_active') === 'true' };
+                await api.updateHero(id, payload);
+                await renderHeroes();
+              }
+              if (t.getAttribute('data-action') === 'del-hero'){
+                await api.deleteHero(id);
+                await renderHeroes();
+              }
+            };
+          }catch(e){ /* ignore */ }
+        }
+      </script>
+
+    </div>
+  </div>
+</body>
+</html>
