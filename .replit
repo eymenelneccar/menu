@@ -1,0 +1,47 @@
+entrypoint = "main.dart"
+modules = ["flutter-3.22.0"]
+
+[nix]
+channel = "stable-24_05"
+
+[deployment]
+run = ["flutter", "run", "-d", "web-server", "--web-port", "5000", "--web-hostname", "0.0.0.0"]
+deploymentTarget = "cloudrun"
+
+[workflows]
+runButton = "Flutter Web"
+
+[[workflows.workflow]]
+name = "Flutter Web"
+author = 47069566
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "flutter pub get"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "flutter run -d web-server --web-port 5000 --web-hostname 0.0.0.0"
+
+[[workflows.workflow]]
+name = "Flutter Analysis"
+author = 47069566
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "flutter analyze"
+
+[[workflows.workflow]]
+name = "Flutter Clean & Get"
+author = 47069566
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "flutter clean"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "flutter pub get"
