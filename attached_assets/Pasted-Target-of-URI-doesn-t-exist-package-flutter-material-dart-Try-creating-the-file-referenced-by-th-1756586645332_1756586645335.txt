@@ -1,0 +1,222 @@
+Target of URI doesn't exist: 'package:flutter/material.dart'. Try creating the file referenced by the URI, or try using a URI for a file that does exist.
+(dart)
+Ln 2, Col 8
+Classes can only extend other classes. Try specifying a different superclass, or removing the extends clause.
+(dart)
+Ln 4, Col 32
+Undefined class 'Key'. Try changing the name to the name of an existing class, or creating a class with the name 'Key'.
+(dart)
+Ln 5, Col 27
+The named parameter 'key' isn't defined. Try correcting the name to an existing named parameter's name, or defining a named parameter with the name 'key'.
+(dart)
+Ln 5, Col 46
+Undefined class 'Widget'. Try changing the name to the name of an existing class, or creating a class with the name 'Widget'.
+(dart)
+Ln 8, Col 3
+The method doesn't override an inherited method. Try updating this class to match the superclass, or removing the override annotation.
+(dart)
+Ln 8, Col 10
+Undefined class 'BuildContext'. Try changing the name to the name of an existing class, or creating a class with the name 'BuildContext'.
+(dart)
+Ln 8, Col 16
+The method 'Drawer' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'Drawer'.
+(dart)
+Ln 9, Col 12
+The method 'ListView' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'ListView'.
+(dart)
+Ln 10, Col 14
+Undefined name 'EdgeInsets'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 11, Col 18
+The method 'DrawerHeader' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'DrawerHeader'.
+(dart)
+Ln 13, Col 11
+The method 'BoxDecoration' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'BoxDecoration'.
+(dart)
+Ln 14, Col 25
+Undefined name 'Theme'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 15, Col 22
+The method 'Column' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'Column'.
+(dart)
+Ln 17, Col 20
+Undefined name 'CrossAxisAlignment'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 18, Col 35
+The method 'CircleAvatar' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'CircleAvatar'.
+(dart)
+Ln 20, Col 17
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 22, Col 36
+The method 'Icon' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'Icon'.
+(dart)
+Ln 23, Col 26
+Undefined name 'Icons'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 24, Col 21
+Undefined name 'Theme'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 26, Col 28
+The name 'SizedBox' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 29, Col 23
+The name 'Text' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 30, Col 23
+The method 'TextStyle' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'TextStyle'.
+(dart)
+Ln 32, Col 26
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 33, Col 28
+Undefined name 'FontWeight'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 35, Col 33
+The name 'Text' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 38, Col 23
+The method 'TextStyle' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'TextStyle'.
+(dart)
+Ln 40, Col 26
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 41, Col 28
+The method 'ListTile' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'ListTile'.
+(dart)
+Ln 48, Col 11
+The name 'Icon' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 49, Col 28
+Undefined name 'Icons'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 49, Col 33
+The name 'Text' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 50, Col 26
+Undefined name 'Navigator'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 52, Col 15
+Undefined name 'Navigator'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 53, Col 15
+The method 'ListTile' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'ListTile'.
+(dart)
+Ln 56, Col 11
+The name 'Icon' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 57, Col 28
+Undefined name 'Icons'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 57, Col 33
+The name 'Text' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 58, Col 26
+Undefined name 'Navigator'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 60, Col 15
+Undefined name 'Navigator'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 61, Col 15
+The method 'ListTile' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'ListTile'.
+(dart)
+Ln 64, Col 11
+The name 'Icon' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 65, Col 28
+Undefined name 'Icons'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 65, Col 33
+The name 'Text' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 66, Col 26
+Undefined name 'Navigator'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 68, Col 15
+Undefined name 'Navigator'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 69, Col 15
+The name 'Divider' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 72, Col 17
+The method 'ListTile' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'ListTile'.
+(dart)
+Ln 73, Col 11
+The name 'Icon' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 74, Col 28
+Undefined name 'Icons'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 74, Col 33
+The name 'Text' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 75, Col 26
+Undefined name 'Navigator'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 77, Col 15
+The method 'ListTile' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'ListTile'.
+(dart)
+Ln 81, Col 11
+The name 'Icon' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 82, Col 28
+Undefined name 'Icons'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 82, Col 33
+The name 'Text' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 83, Col 26
+Undefined name 'Navigator'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 85, Col 15
+Undefined class 'BuildContext'. Try changing the name to the name of an existing class, or creating a class with the name 'BuildContext'.
+(dart)
+Ln 94, Col 24
+The method 'showDialog' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'showDialog'.
+(dart)
+Ln 95, Col 5
+Undefined class 'BuildContext'. Try changing the name to the name of an existing class, or creating a class with the name 'BuildContext'.
+(dart)
+Ln 97, Col 17
+The method 'AlertDialog' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'AlertDialog'.
+(dart)
+Ln 98, Col 16
+The name 'Text' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 99, Col 24
+The name 'Text' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 100, Col 26
+The method 'TextButton' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'TextButton'.
+(dart)
+Ln 105, Col 13
+Undefined name 'Navigator'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 106, Col 32
+The name 'Text' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 107, Col 28
+Undefined class 'BuildContext'. Try changing the name to the name of an existing class, or creating a class with the name 'BuildContext'.
+(dart)
+Ln 115, Col 25
+The method 'showAboutDialog' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'showAboutDialog'.
+(dart)
+Ln 116, Col 5
+The name 'Icon' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 120, Col 30
+Undefined name 'Icons'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 120, Col 35
+The method 'Text' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'Text'.
+(dart)
+Ln 122, Col 9
+The values in a const list literal must be constants. Try removing the keyword 'const' from the list literal.
+(dart)
+Ln 122, Col 9
+The method 'Text' isn't defined for the type 'NavigationDrawer'. Try correcting the name to the name of an existing method, or defining a method named 'Text'.
+(dart)
+Ln 123, Col 9
+The values in a const list literal must be constants. Try removing the keyword 'const' from the list literal.
+(dart)
+Ln 123, Col 9

@@ -1,0 +1,135 @@
+Target of URI doesn't exist: 'package:flutter/material.dart'. Try creating the file referenced by the URI, or try using a URI for a file that does exist.
+(dart)
+Ln 2, Col 8
+Classes can only extend other classes. Try specifying a different superclass, or removing the extends clause.
+(dart)
+Ln 6, Col 30
+Undefined class 'Key'. Try changing the name to the name of an existing class, or creating a class with the name 'Key'.
+(dart)
+Ln 9, Col 25
+The named parameter 'key' isn't defined. Try correcting the name to an existing named parameter's name, or defining a named parameter with the name 'key'.
+(dart)
+Ln 9, Col 70
+Undefined class 'Widget'. Try changing the name to the name of an existing class, or creating a class with the name 'Widget'.
+(dart)
+Ln 12, Col 3
+The method doesn't override an inherited method. Try updating this class to match the superclass, or removing the override annotation.
+(dart)
+Ln 12, Col 10
+Undefined class 'BuildContext'. Try changing the name to the name of an existing class, or creating a class with the name 'BuildContext'.
+(dart)
+Ln 12, Col 16
+The method 'Padding' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'Padding'.
+(dart)
+Ln 15, Col 12
+Undefined name 'EdgeInsets'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 16, Col 16
+Undefined name 'GridView'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 17, Col 14
+The method 'NeverScrollableScrollPhysics' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'NeverScrollableScrollPhysics'.
+(dart)
+Ln 19, Col 18
+The method 'SliverGridDelegateWithFixedCrossAxisCount' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'SliverGridDelegateWithFixedCrossAxisCount'.
+(dart)
+Ln 20, Col 23
+The method 'GestureDetector' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'GestureDetector'.
+(dart)
+Ln 30, Col 18
+Undefined name 'Navigator'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 32, Col 15
+The method 'Card' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'Card'.
+(dart)
+Ln 38, Col 20
+The method 'RoundedRectangleBorder' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'RoundedRectangleBorder'.
+(dart)
+Ln 40, Col 22
+Undefined name 'BorderRadius'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 41, Col 31
+The method 'ClipRRect' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'ClipRRect'.
+(dart)
+Ln 43, Col 22
+Undefined name 'BorderRadius'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 44, Col 31
+The method 'Stack' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'Stack'.
+(dart)
+Ln 45, Col 24
+Undefined name 'StackFit'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 46, Col 24
+Undefined name 'Image'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 49, Col 21
+Undefined name 'BoxFit'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 51, Col 28
+The method 'Container' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'Container'.
+(dart)
+Ln 53, Col 32
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 54, Col 34
+The method 'Icon' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'Icon'.
+(dart)
+Ln 55, Col 34
+Undefined name 'Icons'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 56, Col 29
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 58, Col 36
+The method 'Container' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'Container'.
+(dart)
+Ln 64, Col 21
+The method 'BoxDecoration' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'BoxDecoration'.
+(dart)
+Ln 65, Col 35
+The method 'LinearGradient' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'LinearGradient'.
+(dart)
+Ln 66, Col 35
+Undefined name 'Alignment'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 67, Col 34
+Undefined name 'Alignment'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 68, Col 32
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 70, Col 29
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 71, Col 29
+The method 'Positioned' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'Positioned'.
+(dart)
+Ln 77, Col 21
+The method 'Text' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'Text'.
+(dart)
+Ln 81, Col 30
+The method 'TextStyle' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'TextStyle'.
+(dart)
+Ln 83, Col 32
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 84, Col 34
+Undefined name 'FontWeight'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 86, Col 39
+The method 'Shadow' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'Shadow'.
+(dart)
+Ln 88, Col 29
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 90, Col 38
+The method 'Offset' isn't defined for the type 'CategoriesGrid'. Try correcting the name to the name of an existing method, or defining a method named 'Offset'.
+(dart)
+Ln 91, Col 39
+Undefined name 'TextAlign'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 95, Col 36
+Undefined name 'TextOverflow'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 97, Col 35

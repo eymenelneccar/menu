@@ -1,0 +1,14 @@
+[build]
+  command = "npm run build --if-present"
+  publish = "public"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+  external_node_modules = ["pg"]
+
+# Allow SPA-style paths if you later add a small status page in /public
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

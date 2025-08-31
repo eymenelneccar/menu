@@ -1,0 +1,261 @@
+Target of URI doesn't exist: 'package:flutter/material.dart'. Try creating the file referenced by the URI, or try using a URI for a file that does exist.
+(dart)
+Ln 1, Col 8
+Classes can only extend other classes. Try specifying a different superclass, or removing the extends clause.
+(dart)
+Ln 4, Col 27
+The method doesn't override an inherited method. Try updating this class to match the superclass, or removing the override annotation.
+(dart)
+Ln 6, Col 21
+Classes can only extend other classes. Try specifying a different superclass, or removing the extends clause.
+(dart)
+Ln 9, Col 33
+Undefined class 'PageController'. Try changing the name to the name of an existing class, or creating a class with the name 'PageController'.
+(dart)
+Ln 10, Col 9
+The method 'PageController' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'PageController'.
+(dart)
+Ln 10, Col 42
+The method doesn't override an inherited method. Try updating this class to match the superclass, or removing the override annotation.
+(dart)
+Ln 45, Col 8
+The method 'initState' isn't defined in a superclass of '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'initState' in a superclass.
+(dart)
+Ln 46, Col 11
+The method 'addListener' isn't defined for the type 'LanguageService'. Try correcting the name to the name of an existing method, or defining a method named 'addListener'.
+(dart)
+Ln 47, Col 22
+The method doesn't override an inherited method. Try updating this class to match the superclass, or removing the override annotation.
+(dart)
+Ln 53, Col 8
+The method 'removeListener' isn't defined for the type 'LanguageService'. Try correcting the name to the name of an existing method, or defining a method named 'removeListener'.
+(dart)
+Ln 54, Col 22
+The method 'dispose' isn't defined in a superclass of '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'dispose' in a superclass.
+(dart)
+Ln 56, Col 11
+The method 'setState' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'setState'.
+(dart)
+Ln 60, Col 5
+Undefined name 'Curves'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 69, Col 16
+Undefined class 'Widget'. Try changing the name to the name of an existing class, or creating a class with the name 'Widget'.
+(dart)
+Ln 76, Col 3
+The method doesn't override an inherited method. Try updating this class to match the superclass, or removing the override annotation.
+(dart)
+Ln 76, Col 10
+Undefined class 'BuildContext'. Try changing the name to the name of an existing class, or creating a class with the name 'BuildContext'.
+(dart)
+Ln 76, Col 16
+The method 'Container' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Container'.
+(dart)
+Ln 77, Col 12
+The method 'Stack' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Stack'.
+(dart)
+Ln 79, Col 14
+Undefined name 'PageView'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 81, Col 11
+The method 'setState' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'setState'.
+(dart)
+Ln 84, Col 15
+The method 'Container' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Container'.
+(dart)
+Ln 93, Col 22
+The method 'BoxDecoration' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'BoxDecoration'.
+(dart)
+Ln 94, Col 29
+The method 'DecorationImage' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'DecorationImage'.
+(dart)
+Ln 95, Col 26
+The method 'NetworkImage' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'NetworkImage'.
+(dart)
+Ln 96, Col 28
+Undefined name 'BoxFit'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 97, Col 26
+The method 'Container' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Container'.
+(dart)
+Ln 100, Col 24
+The method 'BoxDecoration' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'BoxDecoration'.
+(dart)
+Ln 101, Col 31
+The method 'LinearGradient' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'LinearGradient'.
+(dart)
+Ln 102, Col 31
+Undefined name 'Alignment'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 103, Col 30
+Undefined name 'Alignment'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 104, Col 28
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 106, Col 25
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 107, Col 25
+The method 'Center' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Center'.
+(dart)
+Ln 111, Col 26
+The method 'Column' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Column'.
+(dart)
+Ln 112, Col 28
+Undefined name 'MainAxisAlignment'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 113, Col 42
+The method 'Text' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Text'.
+(dart)
+Ln 115, Col 25
+The method 'TextStyle' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'TextStyle'.
+(dart)
+Ln 117, Col 34
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 118, Col 36
+Undefined name 'FontWeight'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 120, Col 41
+The method 'Shadow' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Shadow'.
+(dart)
+Ln 122, Col 31
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 124, Col 40
+The method 'Offset' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Offset'.
+(dart)
+Ln 125, Col 41
+Undefined name 'TextAlign'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 129, Col 38
+The method 'SizedBox' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'SizedBox'.
+(dart)
+Ln 131, Col 25
+The method 'Text' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Text'.
+(dart)
+Ln 132, Col 25
+The method 'TextStyle' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'TextStyle'.
+(dart)
+Ln 134, Col 34
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 135, Col 36
+The method 'Shadow' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Shadow'.
+(dart)
+Ln 138, Col 31
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 140, Col 40
+The method 'Offset' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Offset'.
+(dart)
+Ln 141, Col 41
+Undefined name 'TextAlign'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 145, Col 38
+The method 'SizedBox' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'SizedBox'.
+(dart)
+Ln 147, Col 25
+The method 'Row' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Row'.
+(dart)
+Ln 148, Col 25
+Undefined name 'MainAxisAlignment'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 149, Col 46
+The method 'ElevatedButton' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'ElevatedButton'.
+(dart)
+Ln 151, Col 29
+Undefined name 'Scrollable'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 154, Col 33
+Undefined name 'ElevatedButton'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 156, Col 38
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 157, Col 50
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 158, Col 50
+The name 'symmetric' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 159, Col 48
+The method 'RoundedRectangleBorder' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'RoundedRectangleBorder'.
+(dart)
+Ln 160, Col 40
+Undefined name 'BorderRadius'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 161, Col 49
+The method 'Text' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Text'.
+(dart)
+Ln 164, Col 38
+The method 'TextStyle' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'TextStyle'.
+(dart)
+Ln 166, Col 40
+Undefined name 'FontWeight'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 168, Col 47
+The method 'SizedBox' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'SizedBox'.
+(dart)
+Ln 172, Col 29
+The method 'ElevatedButton' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'ElevatedButton'.
+(dart)
+Ln 173, Col 29
+Undefined name 'Navigator'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 175, Col 33
+Undefined name 'ElevatedButton'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 177, Col 38
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 178, Col 50
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 179, Col 50
+The name 'symmetric' isn't a class. Try correcting the name to match an existing class.
+(dart)
+Ln 180, Col 48
+The method 'RoundedRectangleBorder' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'RoundedRectangleBorder'.
+(dart)
+Ln 181, Col 40
+Undefined name 'BorderRadius'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 182, Col 49
+The method 'Text' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Text'.
+(dart)
+Ln 185, Col 38
+The method 'TextStyle' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'TextStyle'.
+(dart)
+Ln 187, Col 40
+Undefined name 'FontWeight'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 189, Col 47
+The method 'Positioned' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Positioned'.
+(dart)
+Ln 203, Col 11
+The method 'Row' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Row'.
+(dart)
+Ln 207, Col 20
+Undefined name 'MainAxisAlignment'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 208, Col 34
+The method 'Container' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'Container'.
+(dart)
+Ln 210, Col 24
+Undefined name 'EdgeInsets'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 213, Col 27
+The method 'BoxDecoration' isn't defined for the type '_HeroSectionState'. Try correcting the name to the name of an existing method, or defining a method named 'BoxDecoration'.
+(dart)
+Ln 214, Col 31
+Undefined name 'BoxShape'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 215, Col 28
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 217, Col 27
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 218, Col 27

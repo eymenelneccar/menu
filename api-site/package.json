@@ -1,0 +1,16 @@
+{
+  "name": "kitchen-menu-api",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'No build needed for this project'",
+    "dev": "netlify dev"
+  },
+  "dependencies": {
+    "@cloudinary/url-gen": "^1.18.0",
+    "pg": "^8.11.5"
+  },
+  "devDependencies": {
+    "@netlify/cli": "^17.14.0"
+  }
+}

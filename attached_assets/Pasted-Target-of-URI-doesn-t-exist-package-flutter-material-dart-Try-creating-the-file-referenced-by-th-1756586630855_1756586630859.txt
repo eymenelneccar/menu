@@ -1,0 +1,81 @@
+Target of URI doesn't exist: 'package:flutter/material.dart'. Try creating the file referenced by the URI, or try using a URI for a file that does exist.
+(dart)
+Ln 2, Col 8
+The function 'runApp' isn't defined. Try importing the library that defines 'runApp', correcting the name to the name of an existing function, or defining a function named 'runApp'.
+(dart)
+Ln 12, Col 3
+Classes can only extend other classes. Try specifying a different superclass, or removing the extends clause.
+(dart)
+Ln 15, Col 21
+Undefined class 'Key'. Try changing the name to the name of an existing class, or creating a class with the name 'Key'.
+(dart)
+Ln 16, Col 16
+The named parameter 'key' isn't defined. Try correcting the name to an existing named parameter's name, or defining a named parameter with the name 'key'.
+(dart)
+Ln 16, Col 35
+The method doesn't override an inherited method. Try updating this class to match the superclass, or removing the override annotation.
+(dart)
+Ln 19, Col 15
+Classes can only extend other classes. Try specifying a different superclass, or removing the extends clause.
+(dart)
+Ln 22, Col 27
+The method doesn't override an inherited method. Try updating this class to match the superclass, or removing the override annotation.
+(dart)
+Ln 26, Col 8
+The method 'initState' isn't defined in a superclass of '_MyAppState'. Try correcting the name to the name of an existing method, or defining a method named 'initState' in a superclass.
+(dart)
+Ln 27, Col 11
+The method 'addListener' isn't defined for the type 'LanguageService'. Try correcting the name to the name of an existing method, or defining a method named 'addListener'.
+(dart)
+Ln 28, Col 22
+The method 'setState' isn't defined for the type '_MyAppState'. Try correcting the name to the name of an existing method, or defining a method named 'setState'.
+(dart)
+Ln 29, Col 7
+The method doesn't override an inherited method. Try updating this class to match the superclass, or removing the override annotation.
+(dart)
+Ln 34, Col 8
+The method 'dispose' isn't defined for the type 'LanguageService'. Try correcting the name to the name of an existing method, or defining a method named 'dispose'.
+(dart)
+Ln 35, Col 22
+The method 'dispose' isn't defined in a superclass of '_MyAppState'. Try correcting the name to the name of an existing method, or defining a method named 'dispose' in a superclass.
+(dart)
+Ln 36, Col 11
+Undefined class 'Widget'. Try changing the name to the name of an existing class, or creating a class with the name 'Widget'.
+(dart)
+Ln 40, Col 3
+The method doesn't override an inherited method. Try updating this class to match the superclass, or removing the override annotation.
+(dart)
+Ln 40, Col 10
+Undefined class 'BuildContext'. Try changing the name to the name of an existing class, or creating a class with the name 'BuildContext'.
+(dart)
+Ln 40, Col 16
+The method 'MaterialApp' isn't defined for the type '_MyAppState'. Try correcting the name to the name of an existing method, or defining a method named 'MaterialApp'.
+(dart)
+Ln 41, Col 12
+The method 'ThemeData' isn't defined for the type '_MyAppState'. Try correcting the name to the name of an existing method, or defining a method named 'ThemeData'.
+(dart)
+Ln 43, Col 14
+Undefined name 'Colors'. Try correcting the name to one that is defined, or defining the name.
+(dart)
+Ln 44, Col 24
+The method 'Locale' isn't defined for the type '_MyAppState'. Try correcting the name to the name of an existing method, or defining a method named 'Locale'.
+(dart)
+Ln 48, Col 15
+The constructor being called isn't a const constructor. Try removing 'const' from the constructor invocation.
+(dart)
+Ln 52, Col 27
+The constructor being called isn't a const constructor. Try removing 'const' from the constructor invocation.
+(dart)
+Ln 53, Col 34
+The constructor being called isn't a const constructor. Try removing 'const' from the constructor invocation.
+(dart)
+Ln 54, Col 35
+The constructor being called isn't a const constructor. Try removing 'const' from the constructor invocation.
+(dart)
+Ln 55, Col 35
+The constructor being called isn't a const constructor. Try removing 'const' from the constructor invocation.
+(dart)
+Ln 56, Col 31
+The constructor being called isn't a const constructor. Try removing 'const' from the constructor invocation.
+(dart)
+Ln 57, Col 35
